@@ -5,7 +5,7 @@ const quizData = [
         b: "Venus", 
         c: "Mars", 
         d:"Pluto", 
-        correct: a,
+        correct: "a",
     },
     {
         question: "Which is the second planet in the Solar system?",
@@ -13,7 +13,7 @@ const quizData = [
         b: "Venus",
         c: "Earth",
         d: "Saturn",
-        correct: b,
+        correct: "b",
         
     },
     {
@@ -22,7 +22,7 @@ const quizData = [
        b: "Jupiter",
        c: "Pluto",
        d: "Mars",
-        correct: a,
+        correct: "a",
     },
     {
         question: "Which is the fourth planet in the Solar system?",
@@ -30,7 +30,7 @@ const quizData = [
         b: "Saturn",
         c: "Mars",
         d: "Mercury",
-        correct: c,
+        correct: "c",
     },
     {
         question: "Which is the fifth planet in the Solar system?",
@@ -38,7 +38,7 @@ const quizData = [
         b: "Pluto",
         c: "Mercury",
         d: "Venus",
-        correct: a,
+        correct: "a",
     },
     {
         question: "Which is the sixth planet in the Solar system?",
@@ -46,7 +46,7 @@ const quizData = [
         b: "Venus",
         c: "Mars",
         d: "Jupiter",
-        correct: a,
+        correct: "a",
     },
     {
         question: "Which is the seventh planet in the Solar system?",
@@ -54,7 +54,7 @@ const quizData = [
         b: "Neptune",
         c: "Mars",
         d: "Uranus",
-        correct: d,
+        correct: "d",
            
     },
     {
@@ -85,7 +85,8 @@ const quizData = [
         correct: d,
     },
 ]
-
+let scoreBoard = document.getElementById("scoreBoard");
+let questionNumber = document.getElementById("questionNumber");
 const quiz = document.getElementById("quiz");
 const answerEls = document.querySelectorAll(".answer");
 const questionEl = document.getElementById("question");
@@ -95,7 +96,7 @@ const c_text = document.getElementById("c_text");
 const d_text = document.getElementById("d_text");
 const submitBtn = document.getElementById("submit");
 
-let currentQuiz = 0;
+let currentQuiz = 1;
 let score = 0;
 
 loadQuiz();
@@ -137,9 +138,14 @@ submitBtn.addEventListener("click", () => {
     if (answer) {
         if (answer === quizData[currentQuiz].correct) {
             score++;
-        }
+            
+        }       
+        console.log(score);
 
+        scoreBoard.innerHTML = "Score:" +score;
+        
         currentQuiz++;
+        questionNumber.innerHTML = currentQuiz + "/" + quizData.length;
         if (currentQuiz < quizData.length) {
             loadQuiz();
         } else {
